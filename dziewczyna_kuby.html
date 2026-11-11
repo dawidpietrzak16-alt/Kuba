@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziewczyna Kuby na dziś</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #f3f4f6;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        #result-container {
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        #name {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+            margin: 0;
+            line-height: 1.2;
+        }
+        #feature {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 10px;
+            opacity: 0.95;
+            min-height: 1.5em;
+        }
+        button {
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 18px rgba(255, 71, 87, 0.5);
+            outline: none;
+            margin-top: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 22px rgba(255, 71, 87, 0.6);
+        }
+        button:active {
+            transform: translateY(1px) scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Dziewczyna Kuby na dziś:</h1>
+        <div id="result-container">
+            <div id="name">?</div>
+            <div id="feature"></div>
+        </div>
+        <button onclick="losuj()">LOSUJ</button>
+    </div>
+
+    <script>
+        const opcje = [
+            { imie: "Roksana", cecha: "Roksana Artystka" },
+            { imie: "Roksana", cecha: "Roksana MILF" },
+            { imie: "Amanda", cecha: "Wyjazd do Edynburga zgodny z BHP" },
+            { imie: "Oliwia", cecha: "Dama i królowa" },
+            { imie: "Paulina", cecha: "Obrażona po weselu" }
+        ];
+
+        function losuj() {
+            const nameDiv = document.getElementById("name");
+            const featureDiv = document.getElementById("feature");
+            let counter = 0;
+            
+            featureDiv.textContent = "";
+
+            const interval = setInterval(() => {
+                const randomItem = opcje[Math.floor(Math.random() * opcje.length)];
+                nameDiv.textContent = randomItem.imie;
+                counter++;
+                
+                if (counter > 12) {
+                    clearInterval(interval);
+                    const finalItem = opcje[Math.floor(Math.random() * opcje.length)];
+                    nameDiv.textContent = finalItem.imie;
+                    featureDiv.textContent = `(${finalItem.cecha})`;
+                }
+            }, 50);
+        }
+    </script>
+
+</body>
+</html>
